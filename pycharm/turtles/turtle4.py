@@ -1,0 +1,16 @@
+from turtle import *
+
+shape("turtle")
+circle(30)
+penup()
+forward(40)
+pendown()
+circle(30)
+penup()
+forward(40)
+pendown()
+circle(30)
+penup()
+forward(40)
+pendown()
+done()
