@@ -15,8 +15,8 @@ def readResultHtml(resultUrl):
     urls = []
 
     # すべてのaタグを検索して、リンクを表示する
-    for element in result.find_all("a"):
-        href = element.get("href")
+    for a_tag in result.find_all("a"):
+        href = a_tag.get("href")
         if href is None:
             continue
 
@@ -107,10 +107,10 @@ def main():
     # 重複除外（順序維持）
     unique_image_urls = []
     seen = set()
-    for u in image_urls:
-        if u not in seen:
-            unique_image_urls.append(u)
-            seen.add(u)
+    for image_url in image_urls:
+        if image_url not in seen:
+            unique_image_urls.append(image_url)
+            seen.add(image_url)
 
     print(f"画像URL数: {len(unique_image_urls)}")
 
