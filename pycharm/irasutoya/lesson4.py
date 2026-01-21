@@ -5,6 +5,8 @@ from urllib.parse import urljoin
 from pathlib import Path
 import time
 
+from hasNextButton import hasNextButton
+
 
 # 詳細画面から、最終目的である画像URLを取得する関数
 # 引数
@@ -82,8 +84,7 @@ start = step * 0
 # Webページを取得して解析する
 resultUrl = f"https://www.irasutoya.com/search?q={keyword}&max-results={step}&start={start}&by-date=false"
 
-
-urls = [] # リスト
+urls = []  # リスト
 # urls = set() # セット
 
 # 詳細画面一覧のURLリストが作成されます
@@ -93,13 +94,20 @@ urls = [] # リスト
 dldir = Path(f"download")
 dldir.mkdir(exist_ok=True)
 
-for i in range(2):
+i = 0
+while True:
     # Webページを取得して解析する
     resultUrl = f"https://www.irasutoya.com/search?q={keyword}&max-results={step}&start={step * i}&by-date=false"
-    readResultHtml(resultUrl,urls)
+    readResultHtml(resultUrl, urls)
+
+    # 「次のページ」ボタンが無ければ最終ページなので終了
+    if not hasNextButton(resultUrl):
+        break
+
+    i += 1
 
 for url in urls:
     imageUrl = getImageUrl(url)
-    print (url + "   image>> " + imageUrl)
-    downloadImage(imageUrl,dldir)
+    print(url + "   image>> " + imageUrl)
+    downloadImage(imageUrl, dldir)
     time.sleep(0.1)
