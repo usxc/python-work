@@ -7,3 +7,6 @@ df = pd.read_csv("test.csv")
 kokugo = df.sort_values("国語", ascending=False)
 print("国語の点数が高いもの順でソート\n", kokugo)
 print("df = \n", df)
+
+df.sort_values("国語", ascending=False, inplace=True)
+print("df = \n", df)
