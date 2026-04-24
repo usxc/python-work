@@ -14,7 +14,7 @@ plt.legend(loc="lower left")
 plt.show()
 
 # 国語と数学の棒グラフ（水平）を作って表示する
-df[["国語","数学"]].plot.barh()
+df[["国語", "数学"]].plot.barh()
 plt.legend(loc="lower left")
 plt.show()
 
